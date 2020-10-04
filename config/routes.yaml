@@ -1,0 +1,18 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+guest_form:
+  path: /guest/{_locale}
+  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::guestForm
+  defaults:
+    _locale: 'de'
+
+index:
+  path: /{_locale}
+  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::index
+  defaults:
+    _locale: 'de'
+
+
+
