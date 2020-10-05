@@ -35,4 +35,7 @@ body {
 .border-white {
   border-color: grey !important;
 }
+.banner {
+  background-image: url("/img/banner.jpg") !important;
+}
 /*# sourceMappingURL=landing.css.map */
