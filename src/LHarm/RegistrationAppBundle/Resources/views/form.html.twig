@@ -20,6 +20,11 @@
                         </div>
                         {% endif %}
                         <div class="col-12">
+
+                            <h2 class="mb-2">
+                                {{ 'guest.form.headline.registration.form'|trans }}
+                            </h2>
+
                             <form class="mb-5" action="{{ path('guest_form') }}" method="post">
                                 <div class="form-group">
                                     <label for="form_name">{{ 'guest.form.for-sure.name'|trans }}</label>

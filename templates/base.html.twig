@@ -24,14 +24,21 @@
             </div>
         {% endblock %}
         {% block header %}
-            <div class="banner">
-                <div class="bg-color-light-grey jumbotron jumbotron-fluid text-black-50">
-                    <div class="container">
-                        <h1 class="display-3">{{ 'header.big.text'|trans }}</h1>
-                        <p class="lead">{{ 'header.small.text'|trans }}</p>
+            <!-- Jumbotron -->
+            <div class="card card-image banner ">
+                <div class="text-black-50 text-center rgba-stylish-strong py-5 px-4">
+                    <div class="py-5">
+
+                        <!-- Content -->
+                        <h5 class="h5 orange-text"><i class="fas fa-camera-retro"></i></h5>
+                        <h2 class="card-title h2 my-4 py-2">{{ 'header.big.text'|trans }}</h2>
+                        <p class="mb-4 pb-2 px-md-5 mx-md-5">{{ 'header.small.text'|trans }}</p>
+                        <a class="btn peach-gradient"><i class="fas fa-clone left"></i></a>
+
                     </div>
                 </div>
             </div>
+            <!-- Jumbotron -->
         {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}

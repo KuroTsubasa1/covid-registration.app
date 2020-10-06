@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'guest.form.headline.registration.form'=> 'Registrierungsformular für Gäste',
     'guest.form.for-sure.name' => 'Vorname, Nachname',
     'guest.form.street-number' => 'Straße, Hausnummer',
     'guest.form.zip-city' => 'PLZ, Stadt',

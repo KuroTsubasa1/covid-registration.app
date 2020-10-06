@@ -36,6 +36,17 @@ body {
   border-color: grey !important;
 }
 .banner {
-  background-image: url("/img/banner.jpg") !important;
+  height: 300px;
+  background-image: url("/img/banner.png") !important;
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center left;
+  /* background-position: center center; */
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: contain;
+  /* background-size: cover; */
+  border-style: none;
 }
 /*# sourceMappingURL=landing.css.map */
