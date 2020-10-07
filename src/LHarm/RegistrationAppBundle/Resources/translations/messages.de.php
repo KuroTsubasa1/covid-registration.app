@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'application.name' => 'COVID-19 Gäste Registrierung',
     'guest.form.headline.registration.form'=> 'Registrierungsformular für Gäste',
     'guest.form.for-sure.name' => 'Vorname, Nachname',
     'guest.form.street-number' => 'Straße, Hausnummer',
