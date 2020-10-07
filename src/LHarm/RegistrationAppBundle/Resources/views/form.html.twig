@@ -10,67 +10,69 @@
 
     <div class="container">
         <div class="row ">
+
             <div class="col-12">
 
-                <div class="container-fluid">
+                <div class="container-fluid mb-5 mt-5">
                     <div class="row d-flex justify-content-center">
-                        {% if error is defined %}
-                        <div class="col-12 alert alert-danger">
-                            {{ error }}
-                        </div>
-                        {% endif %}
-                        <div class="col-12">
-
-                            <h2 class="mb-2">
-                                {{ 'guest.form.headline.registration.form'|trans }}
-                            </h2>
-
-                            <form class="mb-5" action="{{ path('guest_form') }}" method="post">
-                                <div class="form-group">
-                                    <label for="form_name">{{ 'guest.form.for-sure.name'|trans }}</label>
-                                    <input name="form_name" type="text" class="form-control" id="form_name" placeholder="{{ 'guest.form.for-sure.name'|trans }}" required>
+                        <div class="card bg-color-grey pt-5">
+                            {% if error is defined %}
+                                <div class="col-12 alert alert-danger">
+                                    {{ error }}
                                 </div>
+                            {% endif %}
+                            <div class="col-12">
 
-                                <div class="form-group">
-                                    <label for="form_street_number">{{ 'guest.form.street-number'|trans }}</label>
-                                    <input name="form_street_number" type="text" class="form-control" id="form_street_number" placeholder="{{ 'guest.form.street-number'|trans }}" required>
-                                </div>
+                                <h3 class="modal-header">
+                                    {{ 'guest.form.headline.registration.form'|trans }}
+                                </h3>
 
-                                <div class="form-group">
-                                    <label for="form_zip_city">{{ 'guest.form.zip-city'|trans }}</label>
-                                    <input name="form_zip_city" type="text" class="form-control" id="form_zip_city" placeholder="{{ 'guest.form.zip-city'|trans }}" required>
-                                </div>
+                                <form class="mb-5 pt-5" action="{{ path('check_in') }}" method="post">
+                                    <div class="form-group ">
+                                        <label for="form_name">{{ 'guest.form.for-sure.name'|trans }}</label>
+                                        <input name="form_name" type="text" class="form-control" id="form_name" placeholder="{{ 'guest.form.for-sure.name'|trans }}" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="form_email">{{ 'guest.form.email'|trans }}</label>
-                                    <input name="form_email" type="email" class="form-control" id="form_email" placeholder="{{ 'guest.form.email'|trans }}" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="form_street_number">{{ 'guest.form.street-number'|trans }}</label>
+                                        <input name="form_street_number" type="text" class="form-control" id="form_street_number" placeholder="{{ 'guest.form.street-number'|trans }}" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="form_phone">{{ 'guest.form.phone'|trans }}</label>
-                                    <input name="form_phone" type="text" class="form-control" id="form_phone" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="form_zip_city">{{ 'guest.form.zip-city'|trans }}</label>
+                                        <input name="form_zip_city" type="text" class="form-control" id="form_zip_city" placeholder="{{ 'guest.form.zip-city'|trans }}" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="form_note">{{ 'guest.form.notes'|trans }}</label>
-                                    <textarea name="form_note" class="form-control" id="form_note" rows="3"></textarea>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="form_email">{{ 'guest.form.email'|trans }}</label>
+                                        <input name="form_email" type="email" class="form-control" id="form_email" placeholder="{{ 'guest.form.email'|trans }}" required>
+                                    </div>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input name="form_policy" type="checkbox" class="custom-control-input" id="customCheck1" required>
-                                    <label class="custom-control-label" for="customCheck1">{{ 'guest.form.policy'|trans }}</label>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="form_phone">{{ 'guest.form.phone'|trans }}</label>
+                                        <input name="form_phone" type="text" class="form-control" id="form_phone" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="submit"></label>
-                                    <input name="form_submit" id="submit" type="submit" class="btn bg-color-blue text-white" value="{{ 'guest.form.checkin'|trans }}" style="width: 100%">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="form_note">{{ 'guest.form.notes'|trans }}</label>
+                                        <textarea name="form_note" class="form-control" id="form_note" rows="3"></textarea>
+                                    </div>
 
-                            </form>
+                                    <div class="custom-control custom-checkbox">
+                                        <input name="form_policy" type="checkbox" class="custom-control-input" id="customCheck1" required>
+                                        <label class="custom-control-label" for="customCheck1">{{ 'guest.form.policy'|trans }}</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="submit"></label>
+                                        <input name="form_submit" id="submit" type="submit" class="btn bg-color-blue text-white" value="{{ 'guest.form.checkin'|trans }}" style="width: 100%">
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

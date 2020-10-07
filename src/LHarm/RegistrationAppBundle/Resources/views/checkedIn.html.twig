@@ -14,6 +14,9 @@
 
                 <div class="container-fluid">
                     <div class="row d-flex justify-content-center">
+
+                        <div class=" card bg-color-grey pt-5">
+
                         {% if error is defined %}
                             <div class="col-12 alert alert-danger">
                                 {{ error }}
@@ -21,43 +24,43 @@
                         {% endif %}
                         <div class="mb-5">
                             <div class="col-lg-12 ">
-                                <div class="list-group ">
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-white">
+                                <div class="list-group">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">   {{ 'guest.form.headline.personal.data'|trans }}</h5>
+                                            <h3 class="mb-1 modal-header">   {{ 'guest.form.headline.personal.data'|trans }}</h3>
                                         </div>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1"> {{ 'guest.form.for-sure.name'|trans }}</h5>
                                         </div>
                                         <p class="mb-1">{{ name }}</p>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">{{ 'guest.form.street-number'|trans }}</h5>
                                         </div>
                                         <p class="mb-1">{{ street }}</p>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">{{ 'guest.form.zip-city'|trans }}</h5>
                                         </div>
                                         <p class="mb-1">{{ zip_code }}</p>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">  {{ 'guest.form.phone'|trans }}</h5>
                                         </div>
                                         <p class="mb-1">{{ phone_number }}</p>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">{{ 'guest.form.email'|trans }}</h5>
                                         </div>
                                         <p class="mb-1">{{ email }}</p>
                                     </a>
-                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-dark-grey text-white border-white">
+                                    <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start bg-color-grey text-white border-dark-grey">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1"> {{ 'guest.form.notes'|trans }}</h5>
                                         </div>
@@ -66,7 +69,7 @@
 
                                 </div>
 
-                                <form>
+                                <form action="{{ path('check_out') }}">
                                     <div class="form-group">
                                         <label for="submit"></label>
                                         <input name="form_submit" id="submit" type="submit"
@@ -76,6 +79,7 @@
                                 </form>
                             </div>
 
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -2,17 +2,23 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-guest_form:
-  path: /guest/{_locale}
-  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::guestForm
-  defaults:
-    _locale: 'de'
-
 index:
   path: /{_locale}
   controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::index
-  defaults:
-    _locale: 'de'
+
+guest_form:
+  path: /{_locale}/guest/
+  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::guestForm
+
+check_in:
+  path: /{_locale}/guest/checkin/
+  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::checkIn
+
+check_out:
+  path: /{_locale}/guest/checkout/
+  controller: App\LHarm\RegistrationAppBundle\Controller\FrontendController::checkOut
+
+
 
 
 
