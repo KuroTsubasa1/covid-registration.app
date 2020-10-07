@@ -53,33 +53,27 @@ class GuestRepository extends ServiceEntityRepository
     public function validation(TranslatorInterface $translator, $formData)
     {
 
-        if(empty($formData['form_name']) || !isset($formData['form_name']))
-        {
+        if (empty($formData['form_name']) || !isset($formData['form_name'])) {
             return $translator->trans('guest.form.validation.name');
         }
 
-        if(empty($formData['form_street_number']) || !isset($formData['form_street_number']))
-        {
+        if (empty($formData['form_street_number']) || !isset($formData['form_street_number'])) {
             return $translator->trans('guest.form.validation.street_number');
         }
 
-        if(empty($formData['form_zip_city']) || !isset($formData['form_zip_city']))
-        {
+        if (empty($formData['form_zip_city']) || !isset($formData['form_zip_city'])) {
             return $translator->trans('guest.form.validation.zip_city');
         }
 
-        if(empty($formData['form_email']) || !isset($formData['form_email']))
-        {
+        if (empty($formData['form_email']) || !isset($formData['form_email'])) {
             return $translator->trans('guest.form.validation.email');
         }
 
-        if(empty($formData['form_phone']) || !isset($formData['form_phone']))
-        {
+        if (empty($formData['form_phone']) || !isset($formData['form_phone'])) {
             return $translator->trans('guest.form.validation.phone');
         }
 
-        if(empty($formData['form_policy']) || !isset($formData['form_policy']))
-        {
+        if (empty($formData['form_policy']) || !isset($formData['form_policy'])) {
             return $translator->trans('guest.form.validation.policy');
         }
 
@@ -91,12 +85,9 @@ class GuestRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         // prepare data
-        if($formData['form_policy'] == 'on')
-        {
+        if ($formData['form_policy'] == 'on') {
             $formData['form_policy'] = TRUE;
-        }
-        else
-        {
+        } else {
             $formData['form_policy'] = FALSE;
         }
 
@@ -114,6 +105,18 @@ VALUES (:name, :street, :zip_code, :phone_number, :email, :note, :time_created, 
                 'time_created' => date('Y-m-d H:i:s'),
                 'accept_policy' => $formData['form_policy'],
             ]);
+    }
 
+    public function getUserBySession($sessionID)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT * FROM guest WHERE session_id = :sessionID';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute
+        ([
+            'sessionID' => $sessionID,
+        ]);
+        $stmt->fetchOne();
     }
 }

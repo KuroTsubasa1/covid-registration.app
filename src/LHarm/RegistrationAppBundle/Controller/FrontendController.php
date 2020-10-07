@@ -35,6 +35,7 @@ class FrontendController extends AbstractController
             [
                 'title' => 'RegistrationApp',
                 'local' => $request->getLocale(),
+
             ]
         );
     }
@@ -51,6 +52,12 @@ class FrontendController extends AbstractController
         GuestRepository $guestRepository,
         TranslatorInterface $translator
     ) {
+        $sessionID = $this->session->get('sessionID');
+        if(isset($sessionID))
+        {
+            return $this->redirectToRoute('check_in');
+        }
+
         return $this->render(
             '@LHarmRegistrationApp/form.html.twig',
             [
@@ -64,6 +71,7 @@ class FrontendController extends AbstractController
         GuestRepository $guestRepository,
         TranslatorInterface $translator
     ) {
+        $sessionID = $this->session->get('sessionID');
         if (mb_strtolower($request->getMethod()) == 'post')
         {
             $formData = $request->request->all();
@@ -104,12 +112,20 @@ class FrontendController extends AbstractController
         }
         else
         {
-            return $this->render(
-                '@LHarmRegistrationApp/form.html.twig',
-                [
-                    'title' => 'RegistrationApp',
-                ]
-            );
+
+            if(isset($sessionID))
+            {
+             
+            }
+            else
+            {
+                return $this->render(
+                    '@LHarmRegistrationApp/form.html.twig',
+                    [
+                        'title' => 'RegistrationApp',
+                    ]
+                );
+            }
         }
     }
 

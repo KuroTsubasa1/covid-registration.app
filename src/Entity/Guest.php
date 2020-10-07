@@ -62,6 +62,11 @@ class Guest
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $session_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,18 @@ class Guest
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getSessionId(): ?string
+    {
+        return $this->session_id;
+    }
+
+    public function setSessionId(?string $session_id): self
+    {
+        $this->session_id = $session_id;
 
         return $this;
     }
