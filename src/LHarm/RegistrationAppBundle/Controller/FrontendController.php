@@ -53,7 +53,7 @@ class FrontendController extends AbstractController
         TranslatorInterface $translator
     ) {
         $sessionID = $this->session->get('sessionID');
-        if(isset($sessionID))
+        if (isset($sessionID))
         {
             return $this->redirectToRoute('check_in');
         }
@@ -71,7 +71,7 @@ class FrontendController extends AbstractController
         GuestRepository $guestRepository,
         TranslatorInterface $translator
     ) {
-        $sessionID = $this->session->get('sessionID');
+        $sessionID = $this->session->getId();
         if (mb_strtolower($request->getMethod()) == 'post')
         {
             $formData = $request->request->all();
@@ -81,9 +81,9 @@ class FrontendController extends AbstractController
                 $formData
             );
 
-            if ($validationResult === true)
+            if ($validationResult === TRUE)
             {
-                $guestRepository->save($translator, $formData);
+                $guestRepository->save($translator, $formData, $sessionID);
                 $this->session->set('sessionID', $this->session->getId());
 
                 return $this->render(
@@ -112,10 +112,22 @@ class FrontendController extends AbstractController
         }
         else
         {
-
-            if(isset($sessionID))
+            if (isset($sessionID))
             {
-             
+                $user = $guestRepository->getUserBySession($sessionID);
+
+                return $this->render(
+                    '@LHarmRegistrationApp/checkedIn.html.twig',
+                    [
+                        'title'        => 'RegistrationApp',
+                        'name'         => $user[0]['name'],
+                        'street'       => $user[0]['street'],
+                        'zip_code'     => $user[0]['zip_code'],
+                        'phone_number' => $user[0]['phone_number'],
+                        'email'        => $user[0]['email'],
+                        'note'         => $user[0]['note'],
+                    ]
+                );
             }
             else
             {
@@ -131,7 +143,7 @@ class FrontendController extends AbstractController
 
     public function checkOut(Request $request)
     {
-        $this->session->invalidate();
+        $this->session->clear();
         return $this->redirectToRoute('guest_form');
     }
 }

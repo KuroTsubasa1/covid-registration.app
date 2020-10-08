@@ -67,6 +67,11 @@ class Guest
      */
     private $session_id;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $log_out;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +193,18 @@ class Guest
     public function setSessionId(?string $session_id): self
     {
         $this->session_id = $session_id;
+
+        return $this;
+    }
+
+    public function getLogOut(): ?bool
+    {
+        return $this->log_out;
+    }
+
+    public function setLogOut(bool $log_out): self
+    {
+        $this->log_out = $log_out;
 
         return $this;
     }

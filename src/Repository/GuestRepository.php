@@ -9,10 +9,10 @@ use Symfony\Component\VarDumper\Cloner\Data;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @method Guest|null find($id, $lockMode = null, $lockVersion = null)
- * @method Guest|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Guest|null find($id, $lockMode = NULL, $lockVersion = NULL)
+ * @method Guest|null findOneBy(array $criteria, array $orderBy = NULL)
  * @method Guest[]    findAll()
- * @method Guest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Guest[]    findBy(array $criteria, array $orderBy = NULL, $limit = NULL, $offset = NULL)
  */
 class GuestRepository extends ServiceEntityRepository
 {
@@ -52,71 +52,95 @@ class GuestRepository extends ServiceEntityRepository
 
     public function validation(TranslatorInterface $translator, $formData)
     {
-
-        if (empty($formData['form_name']) || !isset($formData['form_name'])) {
+        if (empty($formData['form_name']) || !isset($formData['form_name']))
+        {
             return $translator->trans('guest.form.validation.name');
         }
 
-        if (empty($formData['form_street_number']) || !isset($formData['form_street_number'])) {
+        if (empty($formData['form_street_number']) || !isset($formData['form_street_number']))
+        {
             return $translator->trans('guest.form.validation.street_number');
         }
 
-        if (empty($formData['form_zip_city']) || !isset($formData['form_zip_city'])) {
+        if (empty($formData['form_zip_city']) || !isset($formData['form_zip_city']))
+        {
             return $translator->trans('guest.form.validation.zip_city');
         }
 
-        if (empty($formData['form_email']) || !isset($formData['form_email'])) {
+        if (empty($formData['form_email']) || !isset($formData['form_email']))
+        {
             return $translator->trans('guest.form.validation.email');
         }
 
-        if (empty($formData['form_phone']) || !isset($formData['form_phone'])) {
+        if (empty($formData['form_phone']) || !isset($formData['form_phone']))
+        {
             return $translator->trans('guest.form.validation.phone');
         }
 
-        if (empty($formData['form_policy']) || !isset($formData['form_policy'])) {
+        if (empty($formData['form_policy']) || !isset($formData['form_policy']))
+        {
             return $translator->trans('guest.form.validation.policy');
         }
 
-        return true;
+        return TRUE;
     }
 
-    public function save(TranslatorInterface $translator, $formData)
+    public function save(TranslatorInterface $translator, $formData, $sessionID)
     {
-        $conn = $this->getEntityManager()->getConnection();
+        $conn = $this->getEntityManager()
+                     ->getConnection();
 
         // prepare data
-        if ($formData['form_policy'] == 'on') {
+        if ($formData['form_policy'] == 'on')
+        {
             $formData['form_policy'] = TRUE;
-        } else {
+        }
+        else
+        {
             $formData['form_policy'] = FALSE;
         }
 
-        $sql = 'INSERT INTO guest (name, street, zip_code, phone_number, email, note, _time_created, accept_policy)
-VALUES (:name, :street, :zip_code, :phone_number, :email, :note, :time_created, :accept_policy)';
+        $sql = 'INSERT INTO guest (name, street, zip_code, phone_number, email, note, _time_created, accept_policy, session_id, log_out)
+VALUES (:name, :street, :zip_code, :phone_number, :email, :note, :time_created, :accept_policy, :session_id, :log_out)';
         $stmt = $conn->prepare($sql);
         $stmt->execute(
             [
-                'name' => $formData['form_name'],
-                'street' => $formData['form_street_number'],
-                'zip_code' => $formData['form_zip_city'],
-                'phone_number' => $formData['form_phone'],
-                'email' => $formData['form_email'],
-                'note' => $formData['form_note'],
-                'time_created' => date('Y-m-d H:i:s'),
+                'name'          => $formData['form_name'],
+                'street'        => $formData['form_street_number'],
+                'zip_code'      => $formData['form_zip_city'],
+                'phone_number'  => $formData['form_phone'],
+                'email'         => $formData['form_email'],
+                'note'          => $formData['form_note'],
+                'time_created'  => date('Y-m-d H:i:s'),
                 'accept_policy' => $formData['form_policy'],
-            ]);
+                'session_id'    => $sessionID,
+                'log_out'       => FALSE,
+            ]
+        );
     }
 
     public function getUserBySession($sessionID)
     {
-        $conn = $this->getEntityManager()->getConnection();
+        $conn = $this->getEntityManager()
+                     ->getConnection();
 
         $sql = 'SELECT * FROM guest WHERE session_id = :sessionID';
         $stmt = $conn->prepare($sql);
         $stmt->execute
-        ([
-            'sessionID' => $sessionID,
-        ]);
-        $stmt->fetchOne();
+        (
+            [
+                'sessionID' => $sessionID,
+            ]
+        );
+        $result = $stmt->fetchAllAssociative();
+
+        if ($result)
+        {
+            return $result;
+        }
+        else
+        {
+            return FALSE;
+        }
     }
 }
